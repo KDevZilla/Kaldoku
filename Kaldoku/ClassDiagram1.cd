@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Kaldoku.Board">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QQEEAAACUAgBLAA4AgAQAEAAtrEpQMCJBBQCAhAGABo=</HashCode>
+      <FileName>Component\Board.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kaldoku.Cell">
+    <Position X="7.25" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Kaldoku.Cell.enCellStatus">
+        <TypeIdentifier>
+          <NewMemberFileName>Component\Cell.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAIAQAAABABBAACAAAAAAABECAgUIAAAgAIAQAAg=</HashCode>
+      <FileName>Component\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kaldoku.Piece">
+    <Position X="3.25" Y="0.5" Width="3.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Kaldoku.Piece.PieceOperation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Component\Piece.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Kaldoku.Piece.PieceType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Component\Piece.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Kaldoku.Piece.PieceRotation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Component\Piece.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAgBAJAIQBKAAFAACAAEgEAEEAAhEABgAEFBE=</HashCode>
+      <FileName>Component\Piece.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>
