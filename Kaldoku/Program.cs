@@ -21,7 +21,7 @@ namespace Kaldoku
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(new FormKaldoku());
-          //Application.Run(new FormGenerateBlankBlock());
+            //Application.Run(new FormGenerateBlankBlock());
            
 
         }
