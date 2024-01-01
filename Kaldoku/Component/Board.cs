@@ -676,7 +676,7 @@ namespace Kaldoku
         private void CalTargetNumberForAllPieces()
             => this.lstPiece.ForEach(x => x.CalTargetNumber());
 
-        /*
+        
         Dictionary<Piece.PieceOperation, int> defaultDicOperationChance = new Dictionary<Piece.PieceOperation, int>()
         {
             { Piece.PieceOperation.Add ,10 }, // We actully don't need add
@@ -684,13 +684,15 @@ namespace Kaldoku
             { Piece.PieceOperation.Multiply  ,90 },
             {Piece.PieceOperation.Divide ,100 }
         };
-        */
+        /* 
+         * //use this defaultDicOperationChance, if you want to have more chance to get Divide
         Dictionary<Piece.PieceOperation, int> defaultDicOperationChance = new Dictionary<Piece.PieceOperation, int>()
         {
             { Piece.PieceOperation.Add ,10 }, // We actully don't need add
             { Piece.PieceOperation.Subtract ,40 },
             {Piece.PieceOperation.Divide ,60 }
         };
+        */
         private void AssignOperationToPiece(Boolean IsAcceptNegativeTargetNumber, Dictionary<Piece.PieceOperation, int> dicOpertorChance)
         {
             int i;
