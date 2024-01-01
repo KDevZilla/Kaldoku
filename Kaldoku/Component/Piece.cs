@@ -74,8 +74,10 @@ namespace Kaldoku
                 }
             }
         }
-
-        private int _Number = -1;
+        public int NumberFromCalculate1  => _Number1;
+        public int NumberFromCalculate2 => _Number2;
+        private int _Number1 = int.MinValue;
+        private int _Number2 = int.MinValue;
 
         public int TargetNumber { get; private set; } = -1;
         private Boolean _IsAnswerMatch = false;
@@ -89,7 +91,8 @@ namespace Kaldoku
                 }
 
                 CalNumber();
-                _IsAnswerMatch = (TargetNumber == _Number);
+                _IsAnswerMatch = (TargetNumber == _Number1) ||
+                    (TargetNumber == _Number2);
                 return _IsAnswerMatch;
             }
         }
@@ -97,7 +100,10 @@ namespace Kaldoku
             => TargetNumber = CalculateTargetNumber();
 
         public void CalNumber()
-            => _Number = CalculateNumber();
+        {
+            CalculateNumber(ref _Number1,ref  _Number2);
+        }
+            
 
         public int CalculateTargetNumber()
         {
@@ -160,52 +166,98 @@ namespace Kaldoku
             }
             return false;
         }
-        public int CalculateNumber()
+        private const int InvalidValue = int.MinValue;
+        public void CalculateNumber(ref int Number1, ref int Number2)
         {
             int i;
-            int iSum = 0;
+            //int iSum = 0;
+            Number1 = InvalidValue;
+            Number2 = InvalidValue;
+
+            int numberTemp = 0;
             for (i = 0; i < this.lstCell.Count; i++)
             {
                 switch (this.Operation)
                 {
                     case PieceOperation.Add:
-                        iSum += lstCell[i].Value;
+                        if (i == 0)
+                        {
+                            Number1 = lstCell[i].Value;
+                        }
+                        else
+                        {
+                            Number1 += lstCell[i].Value;
+                        }
                         break;
                     case PieceOperation.Subtract:
                         if (i == 0)
                         {
-                            iSum = lstCell[i].Value;
+                            numberTemp  = lstCell[i].Value;
                         }
                         else
                         {
-                            iSum -= lstCell[i].Value;
+                            Number1 = numberTemp - lstCell[i].Value;
+                            Number2 = lstCell[i].Value - numberTemp;
+                            //iSum -= lstCell[i].Value;
                         }
                         break;
                     case PieceOperation.Multiply:
                         if (i == 0)
                         {
-                            iSum = lstCell[i].Value;
+                            Number1 = lstCell[i].Value;
                         }
                         else
                         {
-                            iSum *= lstCell[i].Value;
+                            Number1 *= lstCell[i].Value;
                         }
                         break;
                     case PieceOperation.Divide:
                         if (i == 0)
                         {
-                            iSum = lstCell[i].Value;
+                            numberTemp  = lstCell[i].Value;
                         }
                         else
                         {
-                            iSum = iSum / lstCell[i].Value;
+                            int tempNumber1 = CalculateDivide(numberTemp, lstCell[i].Value);
+                            int tempNumber2 = CalculateDivide(lstCell[i].Value, numberTemp);
+                            if(tempNumber1 != InvalidValue)
+                            {
+                                Number1 = tempNumber1;
+                            }
+                            if(tempNumber2 != InvalidValue)
+                            {
+                                Number2 = tempNumber2;
+                            }
+                            
                         }
                         break;
 
                 }
 
             }
-            return iSum;
+        }
+        private int CalculateDivide(int numA, int numB)
+        {
+            //For this game there is no case that the number is 0
+            try
+            {
+                if (numA.Equals(0) ||
+                    numB.Equals(0))
+                {
+                    return InvalidValue;
+                }
+                double result = (double)numA / (double)numB;
+                bool isTheResultFromDividingInt = Math.Ceiling(result) == Math.Floor(result);
+                if (!isTheResultFromDividingInt)
+                {
+                    return InvalidValue;
+                }
+
+                return numA / numB;
+            }catch (Exception ex)
+            {
+                return InvalidValue ;
+            }
         }
         public void SetBoard(Board pBoard)
         {

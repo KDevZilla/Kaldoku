@@ -31,18 +31,10 @@ namespace Kaldoku
         private Boolean IsCurrentGameStillPlay = false;
         Board Board = null;
         pictureBoxTable pictable = null;
-        /*
-        public void DeSerializeBoard(String fileName, ref Board pBoard)
-        {
-            Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-            IFormatter formatter = new BinaryFormatter();
-            pBoard = (Board)formatter.Deserialize(stream);
 
-        }
-        */
         private DateTime _TimeBegin;
         private DateTime _TimeEnd;
-     //   private Dictionary<>
+
         private void NewGame(int BoardSize)
         {
             if (!Kaldoku.Baseclass.App.IsDebugMode)
@@ -255,6 +247,14 @@ namespace Kaldoku
 
         private void giveupToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (this.Board == null)
+            {
+                MessageBox.Show("Cannot give up becasue you haven't choose to play yet");
+                return;
+            }
+
+
+            // When you debug program sometime you would like to ignore message box
             if (!Kaldoku.Baseclass.App.IsDebugMode)
             {
                 DialogResult result = MessageBox.Show("Are you sure you want to give up ?", "", MessageBoxButtons.OKCancel);
@@ -263,6 +263,7 @@ namespace Kaldoku
                     return;
                 }
             }
+
 
             this.Board.IsShowCellTargetValue = true;
             FinishedGame();
@@ -296,6 +297,13 @@ namespace Kaldoku
         private void test2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(Board.GetListPieceString());
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormAbout f = new FormAbout();
+            f.StartPosition = FormStartPosition.CenterParent;
+            f.ShowDialog(this);
         }
     }
 }
